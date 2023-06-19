@@ -13,11 +13,10 @@ This repository contains a Java implementation of the classic Tic-Tac-Toe game u
 
 ## Screenshots
 ### Game Board
-![](/home/tumpa/Pictures/Screenshots/Screenshot from 2023-06-19 17-50-29.png)
+![game_board.png](ss%2Fgame_board.png)
 
 ### Win Result
-![](/home/tumpa/Pictures/Screenshots/Screenshot from 2023-06-19 17-50-56.png)
-
+![win_result.png](ss%2Fwin_result.png)
 
 
 ## Working on
