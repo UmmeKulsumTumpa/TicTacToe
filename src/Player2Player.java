@@ -1,6 +1,8 @@
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 public class Player2Player implements ActionListener {
 
@@ -10,16 +12,19 @@ public class Player2Player implements ActionListener {
     private final String set_O = "O";
     private final DecorateBoard decorateBoard;
 
-    public Player2Player(DecorateBoard decorateBoard){
+    public Player2Player(DecorateBoard decorateBoard) {
 
         this.decorateBoard = decorateBoard;
-
-        for(int i=0;i<max_size;i++){
-            this.decorateBoard.buttons[i].addActionListener(this);
-        }
         decorateBoard.reset_button.addActionListener(this);
 
         firstTurn();
+        initializeButtons();
+    }
+
+    public void initializeButtons() {
+        for (int i = 0; i < max_size; i++) {
+            decorateBoard.buttons[i].addActionListener(this);
+        }
     }
 
     public void firstTurn(){
@@ -32,26 +37,21 @@ public class Player2Player implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        // reset the game-board
-        if(e.getSource()==decorateBoard.reset_button){
-            resetAllButtons();
-        }
-        else{
-            // check all buttons which has been clicked
-            for(int i=0;i<max_size;i++){
-
-                if(e.getSource()==decorateBoard.buttons[i]){
-
-                    if(x_turn){
-                        playForX(i);
-                    }
-                    else{
-                        playForO(i);
-                    }
-
-                    isAnyWinner();
+        // Check all buttons which have been clicked
+        for (int i = 0; i < max_size; i++) {
+            if (e.getSource() == decorateBoard.buttons[i]) {
+                if (x_turn) {
+                    playForX(i);
                 }
+                else {
+                    playForO(i);
+                }
+                isAnyWinner();
             }
+        }
+
+        if (e.getSource() == decorateBoard.reset_button) {
+            resetAllButtons();
         }
     }
 
@@ -98,6 +98,7 @@ public class Player2Player implements ActionListener {
 
         if(winner_symbol != ""){
             afterWinningAction(winner_symbol, winner_lane);
+            return;
         }
 
         isDrawMatch();
@@ -106,7 +107,7 @@ public class Player2Player implements ActionListener {
     public void isDrawMatch(){
 
         for(int i=0;i<max_size;i++){
-            if(decorateBoard.buttons[i].getText() == null){
+            if(decorateBoard.buttons[i].getText() == ""){
                 return;
             }
         }
