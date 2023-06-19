@@ -56,7 +56,7 @@ public class DecorateBoard {
         center_panel.setBackground(new Color(0, 0, 57));
         center_panel.setLayout(new GridLayout(3,3, 10, 10));
 
-        for(int i=0;i<9;i++){
+        for(int i=0; i<9; i++){
             buttons[i] = new JButton();
             buttons[i].setFocusable(false);
             buttons[i].setForeground(new Color(0, 0, 57));

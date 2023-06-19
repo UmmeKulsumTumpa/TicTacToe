@@ -8,7 +8,7 @@ public class Player2Player implements ActionListener {
     private final int max_size = 9;
     private final String set_X = "X";
     private final String set_O = "O";
-    DecorateBoard decorateBoard;
+    private final DecorateBoard decorateBoard;
 
     public Player2Player(DecorateBoard decorateBoard){
 
@@ -37,11 +37,6 @@ public class Player2Player implements ActionListener {
             resetAllButtons();
         }
         else{
-            // will set this later with a dialogue box
-//            if(isBoardEmpty()){
-//
-//            }
-
             // check all buttons which has been clicked
             for(int i=0;i<max_size;i++){
 
@@ -53,6 +48,8 @@ public class Player2Player implements ActionListener {
                     else{
                         playForO(i);
                     }
+
+                    isAnyWinner();
                 }
             }
         }
@@ -62,19 +59,10 @@ public class Player2Player implements ActionListener {
 
         for (int i = 0; i < max_size; i++) {
             decorateBoard.buttons[i].setText(null);
+            decorateBoard.buttons[i].setBackground(new Color(255, 255, 255));
+            decorateBoard.buttons[i].setEnabled(true);
         }
         firstTurn();
-    }
-
-    public boolean isBoardEmpty(){
-
-        for(int i=0;i<max_size;i++){
-            if(decorateBoard.buttons[i].getText().equals("")){
-                return false;
-            }
-        }
-
-        return true;
     }
 
     public void playForX(int i){
@@ -101,9 +89,45 @@ public class Player2Player implements ActionListener {
         decorateBoard.show_text.setText("X turn");
     }
 
-    public void checkForWinner(){
+    public void isAnyWinner(){
 
+        Player2PlayerGameLogic flag = new Player2PlayerGameLogic(decorateBoard);
 
+        String winner_symbol = flag.checkForWinner();
+        int[] winner_lane = flag.getWinner_lane();
+
+        if(winner_symbol != ""){
+            afterWinningAction(winner_symbol, winner_lane);
+        }
+
+        isDrawMatch();
+    }
+
+    public void isDrawMatch(){
+
+        for(int i=0;i<max_size;i++){
+            if(decorateBoard.buttons[i].getText() == null){
+                return;
+            }
+        }
+
+        resetAllButtons();
+    }
+
+    public void afterWinningAction(String symbol, int[] winner_lane){
+
+        for (int j : winner_lane) {
+            decorateBoard.buttons[j].setBackground(new Color(0, 255, 0));
+        }
+
+        decorateBoard.show_text.setText(symbol+" wins");
+        muteAllButtons();
+    }
+
+    public void muteAllButtons(){
+        for (int i=0; i<max_size; i++){
+            decorateBoard.buttons[i].setEnabled(false);
+        }
     }
 
 }
