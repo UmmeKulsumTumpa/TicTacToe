@@ -9,10 +9,11 @@ This repository contains a Java implementation of the classic Tic-Tac-Toe game u
 3. Players take turns to make a move by clicking on an empty cell on the game board.
 4. The game automatically detects a win or a draw and displays the result.
 5. Provides an option to reset the game
+6. Resets the game-board automatically after a draw match
 
 ## Working on
 
-1. Building Logic for 2 player
-2. Will add pop-up window 
-3. Will add score board
+1. Building Logic against computer
+2. Will add dialogue box at the click on exit button
+3. Will add score board for continuous playing
 
