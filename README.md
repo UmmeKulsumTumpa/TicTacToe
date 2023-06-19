@@ -11,6 +11,15 @@ This repository contains a Java implementation of the classic Tic-Tac-Toe game u
 5. Provides an option to reset the game
 6. Resets the game-board automatically after a draw match
 
+## Screenshots
+### Game Board
+![](/home/tumpa/Pictures/Screenshots/Screenshot from 2023-06-19 17-50-29.png)
+
+### Win Result
+![](/home/tumpa/Pictures/Screenshots/Screenshot from 2023-06-19 17-50-56.png)
+
+
+
 ## Working on
 
 1. Building Logic against computer
